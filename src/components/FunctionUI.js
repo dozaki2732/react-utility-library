@@ -7,13 +7,18 @@ export default function FunctionUI(props) {
       for (let i = 0; i < num; i++) {
          inputs.push(
             //push inputs into an array
-            <input type="text" className="form-control inline-action" />
+            <input
+               type="text"
+               className="form-control inline-action"
+               key={props.name + i}
+            />
          );
       }
       return inputs; //pushes the inputs to the inputs array
    };
 
    return (
+      //returning the component w/ corresponding name and desc
       <div className="col-12 col-lg-8 offset-lg-2 mb-5">
          <p className="name">
             <b> {props.name} </b>&nbsp;-&nbsp;
