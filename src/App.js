@@ -1,12 +1,31 @@
 import React from "react";
-import "./style/master.scss";
+import "./style/master.scss"; // applies global scss styles
+import { uiData } from "./data/ui";
+import FunctionUI from "./components/FunctionUI";
 
-function App() {
-   return (
-      <div>
-         <h1 className="text-info"> Hello World</h1>
-      </div>
-   );
+export default class App extends React.Component {
+   //utilize lifecycle in react "extends" means to add stuff into components
+   constructor() {
+      //executing code
+      super();
+      console.log(uiData);
+   }
+
+   render() {
+      return (
+         <div className="container">
+            <div className="row">
+               {uiData.map((functionUI) => {
+                  return (
+                     <FunctionUI
+                        name={functionUI.name}
+                        desc={functionUI.desc}
+                        inputs={functionUI.inputs}
+                     />
+                  );
+               })}
+            </div>
+         </div>
+      );
+   }
 }
-
-export default App;
