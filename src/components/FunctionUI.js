@@ -6,6 +6,7 @@ export default function FunctionUI(props) {
       const inputs = [];
       for (let i = 0; i < num; i++) {
          inputs.push(
+            //push inputs into an array
             <input type="text" className="form-control inline-action" />
          );
       }
