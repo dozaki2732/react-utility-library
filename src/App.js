@@ -17,26 +17,30 @@ export default class App extends React.Component {
       };
    }
 
-   toggleFavorites(e) {
+   filterFuncs(e) {
       this.setState({ isFavoritesChecked: !this.state.isFavoritesChecked }); //whatever is checked is going to be flipped to the opposite
       const isFavoritesChecked = document.getElementById("viewMode-favorites")
          .checked; //grabbing user input
       console.log(isFavoritesChecked);
-      const searchInput = document.getElementById("search-input").value;
+      const searchInput = document
+         .getElementById("search-input")
+         .value.toLowerCase();
       const allFuncs = [...this.state.allFuncs]; //get a copy of all the functions "shallow copy" of the array
       if (isFavoritesChecked) {
+         this.setState({ isFavoritesChecked: true }); //whatever is checked is going to be flipped to the opposite
          const favoriteFuncs = allFuncs.filter((func) => {
             return func.isFavorite; //return only favorites
          });
          console.log(favoriteFuncs);
          const filteredFuncs = favoriteFuncs.filter((func) => {
-            return func.name.indexOf(searchInput) >= 0;
+            return func.name.toLowerCase().indexOf(searchInput) >= 0;
          });
 
          this.setState({ displayedFuncs: filteredFuncs }); //setting displayed funcs to filtered
       } else {
+         this.setState({ isFavoritesChecked: false }); //whatever is checked is going to be flipped to the opposite
          const filteredFuncs = allFuncs.filter((func) => {
-            return func.name.indexOf(searchInput) >= 0;
+            return func.name.toLowerCase().indexOf(searchInput) >= 0;
          });
 
          this.setState({ displayedFuncs: filteredFuncs }); //else, just display all funcs
@@ -70,7 +74,7 @@ export default class App extends React.Component {
                         className="custom-control-input"
                         checked={!this.state.isFavoritesChecked}
                         onChange={(e) => {
-                           this.toggleFavorites(e); // "this" refers to class
+                           this.filterFuncs(e); // "this" refers to class
                         }}
                      />
                      <label
@@ -88,7 +92,7 @@ export default class App extends React.Component {
                         className="custom-control-input"
                         checked={this.state.isFavoritesChecked}
                         onChange={(e) => {
-                           this.toggleFavorites(e); // "this" refers to class
+                           this.filterFuncs(e); // "this" refers to class
                         }}
                      />
                      <label
@@ -107,6 +111,9 @@ export default class App extends React.Component {
                            id="search-input"
                            placeholder="Search all functions"
                            aria-label="Search all functions"
+                           onChange={(e) => {
+                              this.filterFuncs(e);
+                           }}
                         />
                      </div>
                      <div className="col-6">
