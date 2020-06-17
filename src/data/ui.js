@@ -120,7 +120,7 @@ export const uiData = [
       order: 112,
    },
    {
-      name: "concatenate",
+      name: "concatenateTwo",
       desc: "concatenate the two inputs",
       inputs: 2,
       type: "basic",
@@ -165,7 +165,7 @@ export const uiData = [
       order: 117,
    },
    {
-      name: "multiply",
+      name: "multiplyNum",
       desc: "multiply two numbers together",
       inputs: 2,
       type: "basic",
@@ -474,7 +474,7 @@ export const uiData = [
       inputs: 2,
       type: "algorithm",
       typeNum: 400,
-      isFavorite: false,
+      isFavorite: true,
       order: 410,
    },
    {

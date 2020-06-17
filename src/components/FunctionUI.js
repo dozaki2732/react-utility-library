@@ -5,12 +5,14 @@ export default function FunctionUI(props) {
       // identifies how many inputs a compoment has
       const inputs = [];
       for (let i = 0; i < num; i++) {
+         const id = `input-${props.name} - ${i}`;
          inputs.push(
             //push inputs into an array
             <input
                type="text"
                className="form-control inline-action"
-               key={props.name + i}
+               key={id} // input-updateRecords-0
+               id={id}
             />
          );
       }

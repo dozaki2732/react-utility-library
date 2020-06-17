@@ -10,11 +10,32 @@ export default class App extends React.Component {
       //executing code
       super();
       console.log(uiData);
+      this.state = {
+         isFavoritesChecked: false,
+         allFuncs: uiData,
+         displayedFuncs: uiData,
+      };
    }
-   getData() {}
+
+   toggleFavorites(e) {
+      const userInput = e.target.id; //grabbing user input
+      console.log(userInput);
+      if (userInput === "viewMode-favorites") {
+         const allFuncs = [...this.state.allFuncs]; //get a copy of all the functions "shallow copy" of the array
+         const filteredFuncs = allFuncs.filter((func) => {
+            return func.isFavorite; //return only favorites
+         });
+         console.log(filteredFuncs);
+         this.setState({ displayedFuncs: filteredFuncs });
+      } else {
+         this.setState({ displayedFuncs: this.state.allFuncs });
+      }
+
+      this.setState({ isFavoritesChecked: !this.state.isFavoritesChecked });
+   }
+
    render() {
       //has to return JSX
-      const orderedData = orderBy(uiData, "name", "desc"); //lodash knows to look for the string of "name"
 
       const getFunctionsNum = () => {
          //return the number of functions in the library
@@ -25,15 +46,71 @@ export default class App extends React.Component {
          //wrap JSX with a parenthesis if contains multiple html elements
          <div className="container">
             <div className="row">
-               <div className="col-12">
+               <div className="col-12 col-lg-8 offset-lg-2 mb-5">
                   <h1 className="d-flex justify-content-center">
                      JavaScript Functions
                   </h1>
                   <p className="text-center lead mb-4">
                      {getFunctionsNum()}&nbsp;functions documented
                   </p>
+                  <div className="custom-control custom-radio custom-control-inline">
+                     <input
+                        type="radio"
+                        id="viewMode-all"
+                        name="viewMode"
+                        className="custom-control-input"
+                        checked={!this.state.isFavoritesChecked}
+                        onChange={(e) => {
+                           this.toggleFavorites(e); // "this" refers to class
+                        }}
+                     />
+                     <label
+                        className="custom-control-label"
+                        htmlFor="viewMode-all"
+                     >
+                        show all
+                     </label>
+                  </div>
+                  <div className="custom-control custom-radio custom-control-inline">
+                     <input
+                        type="radio"
+                        id="viewMode-favorites"
+                        name="viewMode"
+                        className="custom-control-input"
+                        checked={this.state.isFavoritesChecked}
+                        onChange={(e) => {
+                           this.toggleFavorites(e); // "this" refers to class
+                        }}
+                     />
+                     <label
+                        className="custom-control-label"
+                        htmlFor="viewMode-favorites"
+                     >
+                        favorites
+                     </label>
+                  </div>
+                  <div className="row mt-3">
+                     <div className="col-6">
+                        <input
+                           type="text"
+                           className="form-control "
+                           aria-describedby="search-input"
+                           id="search-input"
+                           placeholder="Search all functions"
+                           aria-label="Search all functions"
+                        />
+                     </div>
+                     <div className="col-6">
+                        <select className=" form-control">
+                           <option>Most recent</option>
+                           <option>Oldest</option>
+                           <option>A - Z</option>
+                           <option>Z - A</option>
+                        </select>
+                     </div>
+                  </div>
                </div>
-               {orderedData.map((functionUI) => {
+               {this.state.displayedFuncs.map((functionUI) => {
                   //mapping over utility library
                   const { name, desc, inputs, order } = functionUI;
 
