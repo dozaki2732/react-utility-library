@@ -18,20 +18,29 @@ export default class App extends React.Component {
    }
 
    toggleFavorites(e) {
-      const userInput = e.target.id; //grabbing user input
-      console.log(userInput);
-      if (userInput === "viewMode-favorites") {
-         const allFuncs = [...this.state.allFuncs]; //get a copy of all the functions "shallow copy" of the array
-         const filteredFuncs = allFuncs.filter((func) => {
+      this.setState({ isFavoritesChecked: !this.state.isFavoritesChecked }); //whatever is checked is going to be flipped to the opposite
+      const isFavoritesChecked = document.getElementById("viewMode-favorites")
+         .checked; //grabbing user input
+      console.log(isFavoritesChecked);
+      const searchInput = document.getElementById("search-input").value;
+      const allFuncs = [...this.state.allFuncs]; //get a copy of all the functions "shallow copy" of the array
+      if (isFavoritesChecked) {
+         const favoriteFuncs = allFuncs.filter((func) => {
             return func.isFavorite; //return only favorites
          });
-         console.log(filteredFuncs);
-         this.setState({ displayedFuncs: filteredFuncs });
-      } else {
-         this.setState({ displayedFuncs: this.state.allFuncs });
-      }
+         console.log(favoriteFuncs);
+         const filteredFuncs = favoriteFuncs.filter((func) => {
+            return func.name.indexOf(searchInput) >= 0;
+         });
 
-      this.setState({ isFavoritesChecked: !this.state.isFavoritesChecked });
+         this.setState({ displayedFuncs: filteredFuncs }); //setting displayed funcs to filtered
+      } else {
+         const filteredFuncs = allFuncs.filter((func) => {
+            return func.name.indexOf(searchInput) >= 0;
+         });
+
+         this.setState({ displayedFuncs: filteredFuncs }); //else, just display all funcs
+      }
    }
 
    render() {
