@@ -10,24 +10,25 @@ export default class App extends React.Component {
       //executing code
       super();
       console.log(uiData);
+
       this.state = {
          isFavoritesChecked: false,
-         allFuncs: uiData,
-         displayedFuncs: uiData,
+         allFuncs: orderBy(uiData, "order", "desc"),
+         displayedFuncs: orderBy(uiData, "order", "desc"),
+         orderBy: '["order", "desc"]',
       };
    }
 
    filterFuncs(e) {
-      this.setState({ isFavoritesChecked: !this.state.isFavoritesChecked }); //whatever is checked is going to be flipped to the opposite
       const isFavoritesChecked = document.getElementById("viewMode-favorites")
          .checked; //grabbing user input
-      console.log(isFavoritesChecked);
       const searchInput = document
          .getElementById("search-input")
          .value.toLowerCase();
       const allFuncs = [...this.state.allFuncs]; //get a copy of all the functions "shallow copy" of the array
       if (isFavoritesChecked) {
          this.setState({ isFavoritesChecked: true }); //whatever is checked is going to be flipped to the opposite
+         console.log(this);
          const favoriteFuncs = allFuncs.filter((func) => {
             return func.isFavorite; //return only favorites
          });
@@ -35,24 +36,33 @@ export default class App extends React.Component {
          const filteredFuncs = favoriteFuncs.filter((func) => {
             return func.name.toLowerCase().indexOf(searchInput) >= 0;
          });
-
-         this.setState({ displayedFuncs: filteredFuncs }); //setting displayed funcs to filtered
+         const orderArr = JSON.parse(this.state.orderBy);
+         console.log("orderArr: ", orderArr);
+         const orderedFuncs = orderBy(filteredFuncs, ...orderArr);
+         this.setState({ displayedFuncs: orderedFuncs }); //setting displayed funcs to filtered
       } else {
          this.setState({ isFavoritesChecked: false }); //whatever is checked is going to be flipped to the opposite
          const filteredFuncs = allFuncs.filter((func) => {
             return func.name.toLowerCase().indexOf(searchInput) >= 0;
          });
-
-         this.setState({ displayedFuncs: filteredFuncs }); //else, just display all funcs
+         const orderArr = JSON.parse(this.state.orderBy);
+         console.log("orderArr: ", ...orderArr);
+         const orderedFuncs = orderBy(filteredFuncs, ...orderArr);
+         this.setState({ displayedFuncs: orderedFuncs }); //else, just display all funcs
       }
    }
-
+   changeOrder(e) {
+      this.setState({ orderBy: e.target.value }, () => {
+         this.filterFuncs();
+      });
+      this.filterFuncs();
+   }
    render() {
       //has to return JSX
 
       const getFunctionsNum = () => {
          //return the number of functions in the library
-         return;
+         return 57;
       };
 
       return (
@@ -117,11 +127,17 @@ export default class App extends React.Component {
                         />
                      </div>
                      <div className="col-6">
-                        <select className=" form-control">
-                           <option>Most recent</option>
-                           <option>Oldest</option>
-                           <option>A - Z</option>
-                           <option>Z - A</option>
+                        <select
+                           value={this.state.orderBy}
+                           className="form-control"
+                           onChange={(e) => this.changeOrder(e)}
+                        >
+                           <option value='["order", "desc"]'>
+                              Most recent
+                           </option>
+                           <option value='["order", "asc"]'>Oldest</option>
+                           <option value='["name", "asc"]'>A - Z</option>
+                           <option value='["name", "desc"]'>Z - A</option>
                         </select>
                      </div>
                   </div>
