@@ -13,7 +13,6 @@ export default class FunctionUI extends React.Component {
    }
 
    toggleCodeDisplay() {
-      console.log("clicked!!!!");
       if (this.state.isCodeDisplayed === false) {
          this.setState({ isCodeDisplayed: true });
       } else {
@@ -42,7 +41,6 @@ export default class FunctionUI extends React.Component {
 
    render() {
       const props = this.props;
-      console.log(utils.add(4, "pizza"));
       const renderInputs = (num) => {
          // identifies how many inputs a compoment has
          const inputs = [];
