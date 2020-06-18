@@ -1,5 +1,6 @@
 import React from "react";
 import utils from "../utils/utils";
+import { uiData } from "../data/ui";
 
 export default function FunctionUI(props) {
    const renderInputs = (num) => {
@@ -22,7 +23,14 @@ export default function FunctionUI(props) {
    };
 
    function getUserInput() {
-      console.log("clicked");
+      console.log(props.name);
+      const inputValues = [];
+      for (let i = 0; i < props.inputs; i++) {
+         const element = document.getElementById(`input-${props.name} - ${i}`);
+         const value = element.value;
+         inputValues.push(value);
+      }
+      console.log(inputValues);
    }
 
    return (
