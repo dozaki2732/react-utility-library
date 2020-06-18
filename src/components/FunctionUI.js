@@ -21,6 +21,10 @@ export default function FunctionUI(props) {
       return inputs; //pushes the inputs to the inputs array
    };
 
+   function getUserInput() {
+      console.log("clicked");
+   }
+
    return (
       //returning the component w/ corresponding name and desc
       <div className="col-12 col-lg-8 offset-lg-2 mb-5">
@@ -34,7 +38,12 @@ export default function FunctionUI(props) {
          <div className="actions float-right">
             {renderInputs(props.inputs)}
 
-            <button className="btn btn-primary inline-action">Run</button>
+            <button
+               className="btn btn-primary inline-action"
+               onClick={() => getUserInput()}
+            >
+               Run
+            </button>
          </div>
          <div className="clearfix mb-3"></div>
          <div className="alert alert-primary" style={{ display: "none" }}></div>
