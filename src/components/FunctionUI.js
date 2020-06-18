@@ -1,8 +1,9 @@
 import React from "react";
 import utils from "../utils/utils";
-import { uiData } from "../data/ui";
+import { convertDataType } from "../utils/helpers";
 
 export default function FunctionUI(props) {
+   console.log(utils.add(4, "pizza"));
    const renderInputs = (num) => {
       // identifies how many inputs a compoment has
       const inputs = [];
@@ -28,7 +29,8 @@ export default function FunctionUI(props) {
       for (let i = 0; i < props.inputs; i++) {
          const element = document.getElementById(`input-${props.name} - ${i}`);
          const value = element.value;
-         inputValues.push(value);
+         const convertedValue = convertDataType(value);
+         inputValues.push(convertedValue);
       }
       console.log(inputValues);
    }
