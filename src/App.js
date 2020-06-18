@@ -64,7 +64,7 @@ export default class App extends React.Component {
 
       const getFunctionsNum = () => {
          //return the number of functions in the library
-         return 57;
+         return uiData.length;
       };
 
       return (
