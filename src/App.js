@@ -18,7 +18,9 @@ export default class App extends React.Component {
          orderBy: '["order", "desc"]',
       };
    }
-
+   componentDidUpdate() {
+      console.log("hello");
+   }
    filterFuncs(e) {
       const isFavoritesChecked = document.getElementById("viewMode-favorites")
          .checked; //grabbing user input

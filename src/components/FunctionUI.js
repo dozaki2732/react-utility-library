@@ -16,6 +16,8 @@ export default function FunctionUI(props) {
             />
          );
       }
+      utils.add;
+
       return inputs; //pushes the inputs to the inputs array
    };
 
