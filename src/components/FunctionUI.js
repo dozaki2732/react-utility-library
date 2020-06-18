@@ -1,4 +1,5 @@
 import React from "react";
+import utils from "../utils/utils";
 
 export default function FunctionUI(props) {
    const renderInputs = (num) => {
@@ -16,7 +17,6 @@ export default function FunctionUI(props) {
             />
          );
       }
-      utils.add;
 
       return inputs; //pushes the inputs to the inputs array
    };

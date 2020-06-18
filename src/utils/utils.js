@@ -1,4 +1,129 @@
-class utils {
+const watchList = [
+   {
+      Title: "Inception",
+      Year: "2010",
+      Rated: "PG-13",
+      Released: "16 Jul 2010",
+      Runtime: "148 min",
+      Genre: "Action, Adventure, Crime",
+      Director: "Christopher Nolan",
+      Writer: "Christopher Nolan",
+      Actors: "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy",
+      Plot:
+         "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
+      Language: "English, Japanese, French",
+      Country: "USA, UK",
+      Awards: "Won 4 Oscars. Another 143 wins & 198 nominations.",
+      Poster:
+         "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+      Metascore: "74",
+      imdbRating: "8.8",
+      imdbVotes: "1,446,708",
+      imdbID: "tt1375666",
+      Type: "movie",
+      Response: "True",
+   },
+   {
+      Title: "Interstellar",
+      Year: "2014",
+      Rated: "PG-13",
+      Released: "07 Nov 2014",
+      Runtime: "169 min",
+      Genre: "Adventure, Drama, Sci-Fi",
+      Director: "Christopher Nolan",
+      Writer: "Jonathan Nolan, Christopher Nolan",
+      Actors: "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
+      Plot:
+         "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+      Language: "English",
+      Country: "USA, UK",
+      Awards: "Won 1 Oscar. Another 39 wins & 132 nominations.",
+      Poster:
+         "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
+      Metascore: "74",
+      imdbRating: "8.6",
+      imdbVotes: "910,366",
+      imdbID: "tt0816692",
+      Type: "movie",
+      Response: "True",
+   },
+   {
+      Title: "The Dark Knight",
+      Year: "2008",
+      Rated: "PG-13",
+      Released: "18 Jul 2008",
+      Runtime: "152 min",
+      Genre: "Action, Adventure, Crime",
+      Director: "Christopher Nolan",
+      Writer:
+         "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
+      Actors: "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+      Plot:
+         "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
+      Language: "English, Mandarin",
+      Country: "USA, UK",
+      Awards: "Won 2 Oscars. Another 146 wins & 142 nominations.",
+      Poster:
+         "http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+      Metascore: "82",
+      imdbRating: "9.0",
+      imdbVotes: "1,652,832",
+      imdbID: "tt0468569",
+      Type: "movie",
+      Response: "True",
+   },
+   {
+      Title: "Batman Begins",
+      Year: "2005",
+      Rated: "PG-13",
+      Released: "15 Jun 2005",
+      Runtime: "140 min",
+      Genre: "Action, Adventure",
+      Director: "Christopher Nolan",
+      Writer:
+         "Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)",
+      Actors: "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
+      Plot:
+         "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from the corruption that Scarecrow and the League of Shadows have cast upon it.",
+      Language: "English, Urdu, Mandarin",
+      Country: "USA, UK",
+      Awards: "Nominated for 1 Oscar. Another 15 wins & 66 nominations.",
+      Poster:
+         "http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_SX300.jpg",
+      Metascore: "70",
+      imdbRating: "8.3",
+      imdbVotes: "972,584",
+      imdbID: "tt0372784",
+      Type: "movie",
+      Response: "True",
+   },
+   {
+      Title: "Avatar",
+      Year: "2009",
+      Rated: "PG-13",
+      Released: "18 Dec 2009",
+      Runtime: "162 min",
+      Genre: "Action, Adventure, Fantasy",
+      Director: "James Cameron",
+      Writer: "James Cameron",
+      Actors: "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
+      Plot:
+         "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+      Language: "English, Spanish",
+      Country: "USA, UK",
+      Awards: "Won 3 Oscars. Another 80 wins & 121 nominations.",
+      Poster:
+         "http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
+      Metascore: "83",
+      imdbRating: "7.9",
+      imdbVotes: "876,575",
+      imdbID: "tt0499549",
+      Type: "movie",
+      Response: "True",
+   },
+];
+
+export default class utils {
    static add(input1, input2) {
       return input1 + input2;
    }
@@ -30,12 +155,11 @@ class utils {
       return number;
    }
 
-   static multiply(decimal1, decimal2) {
-      // R: multiplied the two decimals
+   static multiplyDec(decimal1, decimal2) {
       return decimal1 * decimal2;
    }
 
-   static divide(decimal1, decimal2) {
+   static divideDec(decimal1, decimal2) {
       // R: the first decimal is divided by the second decimal
       return decimal1 / decimal2;
    }
@@ -45,7 +169,7 @@ class utils {
       return string1 + " " + string2;
    }
 
-   static concatenate(string1, string2) {
+   static concatenateStrings(string1, string2) {
       // R: concatenate the two strings using +=
       return (string1 += string2);
    }
@@ -81,14 +205,14 @@ class utils {
 
    static push(beer) {
       // R: push the word onto the list
-      beerlist = [" Modelo", " Asahi", " Kirin"];
+      let beerlist = [" Modelo", " Asahi", " Kirin"];
       beerlist.push(" " + beer);
       return beerlist;
    }
 
    static pop(beer) {
       // R: push the word from the list
-      beerlist = ["Modelo", " Asahi", " Kirin", " Pacifico"];
+      let beerlist = ["Modelo", " Asahi", " Kirin", " Pacifico"];
       beerlist.pop();
       beerlist.push(beer);
       return beerlist;
@@ -96,14 +220,14 @@ class utils {
 
    static shift(foodItem) {
       // R: shift the word font the list
-      foodList = ["eggs", " coffee", " cherries", " snacks"];
+      let foodList = ["eggs", " coffee", " cherries", " snacks"];
       foodList.shift();
       foodList.push(foodItem);
       return foodList;
    }
    static unshift(foodItem) {
       // R: shift the word font the list
-      foodList = ["eggs", " coffee", " cherries", " snacks"];
+      let foodList = ["eggs", " coffee", " cherries", " snacks"];
       foodList.unshift();
       foodList.push(foodItem);
       return foodList;
@@ -111,7 +235,7 @@ class utils {
 
    static list(foodItem) {
       // R: added item to list
-      shoppingList = [
+      let shoppingList = [
          ["beer", 3],
          ["lettuce", 2],
          ["soap", 4],
@@ -122,7 +246,7 @@ class utils {
 
    static stand(yourItem) {
       // R: queue your item
-      listForLine = ["noodles", "beer", "eggs", "fruit"];
+      let listForLine = ["noodles", "beer", "eggs", "fruit"];
       listForLine.push(yourItem);
       listForLine.shift();
 
@@ -131,8 +255,9 @@ class utils {
 
    //counting cards
    static countCards(card) {
-      var count = 0;
+      let count = 0;
       switch (card) {
+         default:
          case 2:
          case 3:
          case 4:
@@ -202,21 +327,21 @@ class utils {
 
    //remove numbers with a splice using starting point (0 base coutning) and quanitity removed
    static removeWithSplice(input1, input2) {
-      list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      let list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       list.splice(input1, input2);
       return list;
    }
 
    //add with splice
    static addWithSplice(input1, input2, input3) {
-      list = [1, 2, 3, 4, 5, 5, 7, 8, 9];
+      let list = [1, 2, 3, 4, 5, 5, 7, 8, 9];
       list.splice(input1, input2, input3);
       return list;
    }
 
    //see if the beer is on the listn using index of
    static checkUsingIndexOf(item) {
-      list = ["kirin", "corona", "modelo", "sapporo", "pabst", "stella"];
+      let list = ["kirin", "corona", "modelo", "sapporo", "pabst", "stella"];
       //if the list has item in its index, it will return yes
       if (list.indexOf(item) >= 0) {
          return "yes";
@@ -230,7 +355,8 @@ class utils {
 
    // see if the number is divisible by the input number
    static implementFilter(input) {
-      var new_list = numberList.myFilter(function (item) {
+      let numberList = [2, 4, 7, 23, 64, 534, 7, 45, 265];
+      let new_list = numberList.myFilter(function (item) {
          console.log(new_list);
          //see if the remainder for the number divided by input is 0 (it can be divided by that number)
          return item % input === 0;
@@ -296,136 +422,8 @@ class utils {
    //get average rating of director inputed
 
    static getAverageRating(directorName) {
-      const watchList = [
-         {
-            Title: "Inception",
-            Year: "2010",
-            Rated: "PG-13",
-            Released: "16 Jul 2010",
-            Runtime: "148 min",
-            Genre: "Action, Adventure, Crime",
-            Director: "Christopher Nolan",
-            Writer: "Christopher Nolan",
-            Actors:
-               "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy",
-            Plot:
-               "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
-            Language: "English, Japanese, French",
-            Country: "USA, UK",
-            Awards: "Won 4 Oscars. Another 143 wins & 198 nominations.",
-            Poster:
-               "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-            Metascore: "74",
-            imdbRating: "8.8",
-            imdbVotes: "1,446,708",
-            imdbID: "tt1375666",
-            Type: "movie",
-            Response: "True",
-         },
-         {
-            Title: "Interstellar",
-            Year: "2014",
-            Rated: "PG-13",
-            Released: "07 Nov 2014",
-            Runtime: "169 min",
-            Genre: "Adventure, Drama, Sci-Fi",
-            Director: "Christopher Nolan",
-            Writer: "Jonathan Nolan, Christopher Nolan",
-            Actors:
-               "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
-            Plot:
-               "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
-            Language: "English",
-            Country: "USA, UK",
-            Awards: "Won 1 Oscar. Another 39 wins & 132 nominations.",
-            Poster:
-               "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
-            Metascore: "74",
-            imdbRating: "8.6",
-            imdbVotes: "910,366",
-            imdbID: "tt0816692",
-            Type: "movie",
-            Response: "True",
-         },
-         {
-            Title: "The Dark Knight",
-            Year: "2008",
-            Rated: "PG-13",
-            Released: "18 Jul 2008",
-            Runtime: "152 min",
-            Genre: "Action, Adventure, Crime",
-            Director: "Christopher Nolan",
-            Writer:
-               "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
-            Actors:
-               "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
-            Plot:
-               "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
-            Language: "English, Mandarin",
-            Country: "USA, UK",
-            Awards: "Won 2 Oscars. Another 146 wins & 142 nominations.",
-            Poster:
-               "http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
-            Metascore: "82",
-            imdbRating: "9.0",
-            imdbVotes: "1,652,832",
-            imdbID: "tt0468569",
-            Type: "movie",
-            Response: "True",
-         },
-         {
-            Title: "Batman Begins",
-            Year: "2005",
-            Rated: "PG-13",
-            Released: "15 Jun 2005",
-            Runtime: "140 min",
-            Genre: "Action, Adventure",
-            Director: "Christopher Nolan",
-            Writer:
-               "Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)",
-            Actors: "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
-            Plot:
-               "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from the corruption that Scarecrow and the League of Shadows have cast upon it.",
-            Language: "English, Urdu, Mandarin",
-            Country: "USA, UK",
-            Awards: "Nominated for 1 Oscar. Another 15 wins & 66 nominations.",
-            Poster:
-               "http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_SX300.jpg",
-            Metascore: "70",
-            imdbRating: "8.3",
-            imdbVotes: "972,584",
-            imdbID: "tt0372784",
-            Type: "movie",
-            Response: "True",
-         },
-         {
-            Title: "Avatar",
-            Year: "2009",
-            Rated: "PG-13",
-            Released: "18 Dec 2009",
-            Runtime: "162 min",
-            Genre: "Action, Adventure, Fantasy",
-            Director: "James Cameron",
-            Writer: "James Cameron",
-            Actors:
-               "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
-            Plot:
-               "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
-            Language: "English, Spanish",
-            Country: "USA, UK",
-            Awards: "Won 3 Oscars. Another 80 wins & 121 nominations.",
-            Poster:
-               "http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
-            Metascore: "83",
-            imdbRating: "7.9",
-            imdbVotes: "876,575",
-            imdbID: "tt0499549",
-            Type: "movie",
-            Response: "True",
-         },
-      ];
       let filteredMovies = watchList.filter(
-         (movie) => movie["Director"] == directorName
+         (movie) => movie["Director"] === directorName
       );
       console.log(filteredMovies);
       let movieRatingSum = filteredMovies.reduce(
@@ -440,7 +438,7 @@ class utils {
    static squareArray(arr) {
       let positiveNum = arr.filter((num) => num > 0);
       let positiveInt = positiveNum.filter(
-         (num) => String(num).indexOf(".") == -1
+         (num) => String(num).indexOf(".") === -1
       );
       let squaredInt = positiveInt.map((num) => num * num);
 
@@ -480,18 +478,14 @@ class utils {
    static urlSlug(title) {
       let lowerCase = title.toLowerCase();
       let splittingUp = lowerCase.split(/\W/);
-      let filteredTitle = splittingUp.filter((item) => item != "");
+      let filteredTitle = splittingUp.filter((item) => item !== "");
       let joiningTitle = filteredTitle.join("-");
 
       return joiningTitle;
    }
    // Use the every Method to Check that Every Element in an Array Meets a Criteria
    static checkPositive(arr) {
-      let result = arr.every((value) => {
-         value > 0;
-      });
-
-      return result;
+      return arr.every((value) => value > 0);
    }
 
    // Use the some Method to Check that Any Elements in an Array Meet a Criteria
