@@ -10,40 +10,41 @@ export default class App extends React.Component {
       //executing code
       super();
       console.log(uiData);
-
+      //initialize state inside constructor via this.state
       this.state = {
-         isFavoritesChecked: false,
+         isFavoritesChecked: false, //set defaul values, define initial state
          allFuncs: orderBy(uiData, "order", "desc"),
          displayedFuncs: orderBy(uiData, "order", "desc"),
          orderBy: '["order", "desc"]',
       };
    }
-   componentDidUpdate() {
-      console.log("hello");
-   }
+   //  componentDidUpdate() {
+   //     console.log("hello");
+   //  }
    filterFuncs(e) {
       const isFavoritesChecked = document.getElementById("viewMode-favorites")
-         .checked; //grabbing user input
+         .checked; //grabbing user input of what id was clicked on
       const searchInput = document
          .getElementById("search-input")
-         .value.toLowerCase();
+         .value.toLowerCase(); //search input of user
       const allFuncs = [...this.state.allFuncs]; //get a copy of all the functions "shallow copy" of the array
       if (isFavoritesChecked) {
+         //grabbing all favorites
          this.setState({ isFavoritesChecked: true }); //whatever is checked is going to be flipped to the opposite
-         console.log(this);
+         //console.log(this);
          const favoriteFuncs = allFuncs.filter((func) => {
-            return func.isFavorite; //return only favorites
+            return func.isFavorite; //return only favorites by filter
          });
-         console.log(favoriteFuncs);
+         //console.log(favoriteFuncs);
          const filteredFuncs = favoriteFuncs.filter((func) => {
             return func.name.toLowerCase().indexOf(searchInput) >= 0;
-         });
+         }); //return only the items that contain search input
          const orderArr = JSON.parse(this.state.orderBy);
-         console.log("orderArr: ", orderArr);
+
          const orderedFuncs = orderBy(filteredFuncs, ...orderArr);
          this.setState({ displayedFuncs: orderedFuncs }); //setting displayed funcs to filtered
       } else {
-         this.setState({ isFavoritesChecked: false }); //whatever is checked is going to be flipped to the opposite
+         this.setState({ isFavoritesChecked: false }); //toggle favorites
          const filteredFuncs = allFuncs.filter((func) => {
             return func.name.toLowerCase().indexOf(searchInput) >= 0;
          });
